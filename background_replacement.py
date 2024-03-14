@@ -30,8 +30,8 @@ class BackgroundReplacement:
             },
         }
 
-    RETURN_TYPES = ("IMAGE", "IMAGE",)
-    RETURN_NAMES = ("depth_image", "cropped_image")
+    RETURN_TYPES = ("IMAGE", "IMAGE", "IMAGE",)
+    RETURN_NAMES = ("depth_image", "cropped_image", "mask")
     FUNCTION = "replace_background"  # Function name
     CATEGORY = "utils"  # Category for organization
 
@@ -122,7 +122,9 @@ class BackgroundReplacement:
 
         depth_image = BackgroundReplacement.convert_and_add_batch_dimension(masked_depth_map)
         cropped_image = BackgroundReplacement.convert_and_add_batch_dimension(cropped)
-        return (depth_image, cropped_image,)
+        mask = BackgroundReplacement.convert_and_add_batch_dimension(crop_mask)
+
+        return (depth_image, cropped_image, mask,)
 
 
 class ImageComposite:

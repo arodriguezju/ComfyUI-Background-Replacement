@@ -122,7 +122,7 @@ class BackgroundReplacement:
 
         depth_image = BackgroundReplacement.convert_and_add_batch_dimension(masked_depth_map)
         cropped_image = BackgroundReplacement.convert_and_add_batch_dimension(cropped)
-        mask = BackgroundReplacement.convert_and_add_batch_dimension(crop_mask_binary.convert('RGB'))
+        mask = BackgroundReplacement.convert_and_add_batch_dimension(Image.fromarray(crop_mask_binary).convert('RGB'))
 
         return (depth_image, cropped_image, mask,)
 
